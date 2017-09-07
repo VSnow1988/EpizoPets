@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>To Eat or To Love? - Add New Pet</title>
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'style.css' %}" media="screen" title="no title"  charset="utf-8">
+ </head>
+ <body>
+   <h2>Get a New Pet!</h2>
+   <p>They're so cute when they're new!</p>
+   <br><br>
+   <form action="/addpet" method="POST">
+   {% csrf_token %}
+     Name: <input type="text" name="name"><br><br>
+     Type: <select name="type">
+        <option value="fishy">Fishy</option>
+        <option value="doggy">Doggy</option>
+        <option value="kitty">Kitty</option>
+         <option value="piggy">Piggy</option>
+        <option value="babadook">Babadook</option>
+     </select><br><br>
+     <input type="submit" value="Create my new pet!">
+      </form>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>To Eat or To Love? - Eat your pet?</title>
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'style.css' %}" media="screen" title="no title"  charset="utf-8">
+ </head>
+ <body>
+
+   <h2>Are you sure you want to eat your pet?</h2>
+   <center>
+   {% if thispet.type == "babadook" %}
+   <img src="{% static 'images/babadooksad.jpg' %}">
+   {% elif thispet.type == "doggy" %}
+   <img src="{% static 'images/doggysad.jpg' %}">
+   {% elif thispet.type == "piggy" %}
+   <img src="{% static 'images/kittysad.jpg' %}">
+   {% elif thispet.type == "fishy" %}
+   <img src="{% static 'images/fishysad.jpg' %}">
+   {% elif thispet.type == "kitty" %}
+   <img src="{% static 'images/kittysad.jpg' %}">
+   <br><br>
+   {% endif %}
+   <br><br>
+   <span>{{thispet.name}} says: {{randphrase}}</span>
+   </center>
+	<br><br><br><br><br>
+   <center>
+   <form class="button" action="/eat" method="POST">
+   {% csrf_token %}
+    <input type="hidden" value={{thispet.id}} name="id">
+    <input type="submit" value="Yes! I'll share it with the others~">
+   </form>
+   <form class="button" action="/dashboard" method="POST">
+   {% csrf_token %}
+	<input type="submit" value="No, I changed my mind...I just can't do it.">
+   </form>
+   </center>
+ </body>
+</html>

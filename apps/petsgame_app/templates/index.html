@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+ <html>
+  <head>
+    <title>To Eat or To Love?</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" media="screen" title="no title"  charset="utf-8">
+  </head>
+  <body>
+    <h1>To Eat or To Love?</h1>
+    <p>Collect and care for adorable critters. When you get bored with them, you can just kill them and eat them to make room for another!</p>
+    <br><br>
+
+    <form action="/login" method="POST">
+      {% csrf_token %}
+      Username: <input type="text" name="username"><br><br>
+      Password: <input type="password" name="password"><br><br>
+      <input type="submit" value="Login">
+    </form>
+    <br>
+    <form action="/register" method="POST">
+      {% csrf_token %}
+      Username: <input type="text" name="username"><br><br>
+      Password: <input type="password" name="password"><br><br>
+      Confirm Password: <input type="password" name="confirmpassword"><br><br>
+      Email: <input type="text" name="email"><br><br>
+      Birthdate: <input type="date" name="birthdate"><br><br>
+      <input type="submit" value="Register">
+    <form>
+
+    <br><br>
+        {% if messages %}
+			{% for message in messages %}
+        <span {% if message.error %} class="messagerror" {% elif message.success %} class="messagesuccess"{% endif %}>{{ message }}</span><br>
+			{% endfor %}
+        {% endif %}
+
+  </body>
+ </html>

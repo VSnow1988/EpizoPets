@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>To Eat or To Love? - Dashboard</title>
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'style.css' %}" media="screen" title="no title"  charset="utf-8">
+ </head>
+ <body>
+   <h2>{{request.session.username}}'s Pets</h2>
+
+  <div id="animals">
+    {% for x in myanimals %}
+    <div class="animal">
+		{% if x.type == "babadook" %}
+			<img src="{% static 'images/Babadook.jpg' %}" media="screen">
+		{% elif x.type == "fishy" %}
+			<img src="{% static 'images/Fishy.jpg' %}" media="screen">
+		{% elif x.type == "doggy" %}
+			<img src="{% static 'images/Doggy.jpg' %}" media="screen">
+		{% elif x.type == "kitty" %}
+			<img src="{% static 'images/Kitty.jpg' %}" media="screen">
+		{% elif x.type == "piggy" %}
+			<img src="{% static 'images/Piggy.jpg' %}" media="screen">
+		{% endif %}
+      <br><br>
+      Name: {{x.name}}<br><br>
+      Type: {{x.type}}<br><br>
+	  Age: {{x.birthdate}}<br><br>
+      HP: {{x.currenthp}} / {{x.maxhp}}<br><br>
+	  
+      <form class="killbutton" action="/eatconfirm" method="POST">
+	  {% csrf_token %}
+	  <input type="hidden" value={{x.id}} name="id">
+	  <input type="submit" value="Kill and eat this pet">
+	  </form>
+	  <br><br>
+    </div>
+    {% endfor %}
+  </div>
+  <br><br>
+  <a id="addpet" href="{% url "newpet" %}">Add a new pet</a>
+  <br><br>
+    {% if messages %}
+			{% for message in messages %}
+        <span {% if message.error %} class="messagerror" {% elif message.success %} class="messagesuccess"{% endif %}>{{ message }}</span><br>
+			{% endfor %}
+    {% endif %}
+
+  <a id="logout" href="{% url 'logout' %}">Logout</a>
+
+
+ </body>
+</html>
