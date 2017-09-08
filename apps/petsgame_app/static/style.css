@@ -23,9 +23,8 @@ body {
    text-align: center;
  }
 
-form {
+.formdiv {
    border: 5px solid green;
-   display: inline;
  }
 
 #logout {
@@ -60,7 +59,43 @@ form {
 	margin-bottom: 50px;
  }
 
- .killbutton {
+.killbutton {
 	 border: none;
  }
+ 
+.usebutton {
+	border: none;
+	display: inline;
+}
 
+#basket {
+	border: 2px solid black;
+	width: 600px;
+	height: 200px;
+	position: absolute;
+	bottom: 50px;
+	right: 20px;
+	text-align: center;
+	overflow: scroll;
+}
+
+#basketcontents {
+	border: none;
+}
+
+td {
+	margin: 10px;
+	padding: 10px;
+}
+
+#foragebutton {
+	border: 5px dotted green;
+	position: absolute;
+	left: 20px;
+	bottom: 100px;
+	padding: 5px;
+}
+
+#messages {
+	margin-right: 50px;
+}

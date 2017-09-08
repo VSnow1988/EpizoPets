@@ -25,7 +25,7 @@
       <br><br>
       Name: {{x.name}}<br><br>
       Type: {{x.type}}<br><br>
-	  Age: {{x.birthdate}}<br><br>
+	  Birthday: {{x.birthdate}}<br><br>
       HP: {{x.currenthp}} / {{x.maxhp}}<br><br>
 	  
       <form class="killbutton" action="/eatconfirm" method="POST">
@@ -38,11 +38,36 @@
     {% endfor %}
   </div>
   <br><br>
+  <div id="basket">
+  <center>
+  <table id="basketcontents">
+  {% for x in myitems %}
+  <tr>
+  <td>{{x.item}}</td>
+  <td>{{x.amount}}</td>
+  <td>{{x.description}}</td>
+  <td><form id="usebutton" action="/useitem" method="POST">
+	{% csrf_token %}
+	<input type="hidden" value={{x.item}} name="item">
+	<input type="submit" value="Use">
+  </form>
+  </td>
+  </tr>
+  {% endfor %}
+  </table>
+  </center>
+  <br><br>
+  </div>
+  
+  <form action="/forage" id="foragebutton">
+	<input type="submit" value="Forage">
+  </form>
+  
   <a id="addpet" href="{% url "newpet" %}">Add a new pet</a>
   <br><br>
     {% if messages %}
 			{% for message in messages %}
-        <span {% if message.error %} class="messagerror" {% elif message.success %} class="messagesuccess"{% endif %}>{{ message }}</span><br>
+        <span id="messages" {% if message.error %} class="messagerror" {% elif message.success %} class="messagesuccess"{% endif %}>{{ message }}</span><br>
 			{% endfor %}
     {% endif %}
 

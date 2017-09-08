@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 import datetime
 import re, random
-from models import User, Pet
+from models import User, Pet, Item
 
 # Create your views here.
 def index(request):
@@ -60,8 +60,13 @@ def login(request):
 
 def dashboard(request):
 	context={
-	"myanimals": Pet.objects.filter(owner=User.objects.get(id=request.session['id']))
+	"myanimals": Pet.objects.filter(owner=User.objects.get(id=request.session['id'])),
+	"today": datetime.date.today(),
+	"myitems": Item.objects.filter(owner=User.objects.get(id=request.session['id'])),
 	}
+	for x in Pet.objects.filter(owner=User.objects.get(id=request.session['id'])):
+		if (x.currenthp <= 0):
+				x.delete() 
 	return render(request,"dashboard.html",context)
 
 def logout(request):
@@ -103,3 +108,124 @@ def eat(request):
 		killme = Pet.objects.get(id=request.POST['id'])
 		killme.delete()
 		return redirect("/dashboard")
+		
+def forage(request):
+		print "I got to the forage view. line 110"
+		item = {"bear":"Oh no! A bear attacked!", "forest fire":"Uh, oh...a forest fire started. Your pets are flammable and fragile, so they died.", "mushroom":"It looks safe...", "water":"Refreshing, hydrating!", "honey":"Delicious bee vomit. +2 HP", "bug":"Good source of protein.", "berry":"So sweet! +3 HP", "apple":"Tasty fruit. HP +5 one pet.","stick":"A solid twig, easy to hold.", "flower":"Makes all your pets happier.", "acorn":"A dry, icky nut. HP +1."}
+		forageitem = item.keys()[random.randrange(0,len(item))]
+		
+		if (forageitem == "bear"):
+			messages.error(request, item['bear'])
+			for x in Pet.objects.filter(owner=User.objects.get(id=request.session['id'])):
+				x.currenthp = x.currenthp -10
+				x.save()
+			return redirect('/dashboard')
+		
+		if (len(Item.objects.filter(owner=request.session['id'])) > 0):
+			for x in Item.objects.filter(owner=request.session['id']):
+				if (x.item == forageitem):
+					x.amount = x.amount + 1
+					x.save()
+					messages.success(request, "You found a " + forageitem +".")
+					return redirect("/dashboard")
+				else:
+					continue
+		Item.objects.create(item=forageitem, owner=User.objects.get(id = request.session['id']), description=item[forageitem], amount=1)
+		messages.success(request, "You found a " + forageitem +".")
+		return redirect("/dashboard")
+				
+		
+def useitem(request):
+		#all the current user's items as a list of objects
+		thisitem = Item.objects.get(owner=User.objects.get(id = request.session['id']), item=request.POST['item'])
+		if (request.POST['item'] == 'apple'):
+			pass
+		if (request.POST['item'] == 'stick'):
+			mypets = Pet.objects.filter(owner=User.objects.get(id = request.session['id']))
+			thispet = mypets[random.randrange(0,len(mypets))]
+			thispet.currenthp = thispet.currenthp - 3
+			thispet.save()
+			thisitem.amount = thisitem.amount - 1
+			thisitem.save()
+			messages.success(request, "You threw the stick and it bopped " + thispet.name + " on the head. Ouch!")
+			return redirect("/dashboard")
+				
+				
+		if (request.POST['item'] == 'berry'):
+			pass
+		if (request.POST['item'] == 'mushroom'):
+			mypets = Pet.objects.filter(owner=User.objects.get(id = request.session['id']))
+			thispet = mypets[random.randrange(0,len(mypets))]
+			effects = ["goodshroom", "badshroom"]
+			effect = effects[random.randrange(0, len(effects))]
+			if (effect == "badshroom"):
+				if (thispet.currenthp < 1):
+					pass
+					messages.success(request, thispet.name + " was brave (or hungry) enough to eat the mushroom. Nothing happened.")
+					thisitem.amount = thisitem.amount - 1
+					thisitem.save()
+					return redirect("/dashboard")
+					
+				else:
+					thispet.currenthp = thispet.currenthp - 1
+					thispet.save()
+					messages.success(request, thispet.name + " was brave (or hungry) enough to eat the mushroom. Oops...HP-1.")
+					thisitem.amount = thisitem.amount -1
+					thisitem.save()
+					return redirect("/dashboard")
+				
+			if (effect == "goodshroom"):
+				if (thispet.currenthp < thispet.maxhp):
+					thispet.currenthp = thispet.currenthp -1
+					thispet.save()
+					messages.success(request, thispet.name + " was brave (or hungry) enough to eat the mushroom...HP + 1!")
+					thisitem.amount = thisitem.amount -1
+					thisitem.save()
+					return redirect("/dashboard")
+				else:
+					messages.success(request, thispet.name + " was brave (or hungry) enough to eat the mushroom. Nothing happened.")
+					thisitem.amount = thisitem.amount -1
+					thisitem.save()
+					return redirect("/dashboard")
+			
+			
+			
+			
+			
+		if (request.POST['item'] == 'water'):
+			for x in Pet.objects.filter(owner=User.objects.get(id = request.session['id'])):
+				if (x.currenthp < x.maxhp-5):
+					x.currenthp = x.currenthp + 5
+					x.save()
+				elif (x.currenthp < x.maxhp):
+					x.currenthp = x.maxhp
+					x.save()
+				else:
+					continue
+			thisitem.amount = thisitem.amount -1
+			thisitem.save()
+			if (thisitem.amount < 1):
+				thisitem.delete()
+			messages.success(request, "You shared the water with all of your pets.")
+			return redirect("/dashboard")
+		if (request.POST['item'] == 'honey'):
+			pass
+		if (request.POST['item'] == 'acorn'):
+			pass
+		if (request.POST['item'] == 'bug'):
+			pass
+		if (request.POST['item'] == 'flower'):
+			for x in Pet.objects.filter(owner=User.objects.get(id = request.session['id'])):
+				if (x.currenthp < x.maxhp):
+					x.currenthp = x.currenthp + 1
+					x.save()
+				else:
+					continue
+			thisitem.amount = thisitem.amount -1
+			thisitem.save()
+			if (thisitem.amount < 1):
+				thisitem.delete()
+			messages.success(request, "You waved the flower around in front of your pets. Their eyes light up.")
+			return redirect("/dashboard")
+			
+		

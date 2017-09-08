@@ -12,4 +12,6 @@ urlpatterns = [
      url(r'^eat', views.eat),
      url(r'^newpet', views.newpet, name="newpet"),
      url(r'^addpet', views.addpet, name="addpet"),
+	 url(r'^forage', views.forage),
+	 url(r'^useitem', views.useitem),
  ]

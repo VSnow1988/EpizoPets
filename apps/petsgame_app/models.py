@@ -23,3 +23,12 @@ class Pet(models.Model):
 	birthdate = models.DateField(auto_now_add=True)
 	class Meta:
 		app_label = "petsgame_app"
+		
+class Item(models.Model):
+	id = models.IntegerField(primary_key=True)
+	owner = models.ForeignKey(User, null=False)
+	item = models.CharField(max_length=20)
+	description = models.CharField(max_length=40)
+	amount = models.IntegerField()
+	class Meta:
+		app_label = "petsgame_app"

@@ -9,14 +9,16 @@
     <h1>To Eat or To Love?</h1>
     <p>Collect and care for adorable critters. When you get bored with them, you can just kill them and eat them to make room for another!</p>
     <br><br>
-
-    <form action="/login" method="POST">
-      {% csrf_token %}
-      Username: <input type="text" name="username"><br><br>
-      Password: <input type="password" name="password"><br><br>
-      <input type="submit" value="Login">
-    </form>
-    <br>
+	<div class="formdiv">
+		<form action="/login" method="POST">
+		  {% csrf_token %}
+		  Username: <input type="text" name="username"><br><br>
+		  Password: <input type="password" name="password"><br><br>
+		  <input type="submit" value="Login">
+		</form>
+	</div>
+		<br>
+	<div class="formdiv">
     <form action="/register" method="POST">
       {% csrf_token %}
       Username: <input type="text" name="username"><br><br>
@@ -26,7 +28,7 @@
       Birthdate: <input type="date" name="birthdate"><br><br>
       <input type="submit" value="Register">
     <form>
-
+	</div>
     <br><br>
         {% if messages %}
 			{% for message in messages %}
