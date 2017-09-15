@@ -19,15 +19,15 @@
 	</div>
 		<br>
 	<div class="formdiv">
-    <form action="/register" method="POST">
-      {% csrf_token %}
-      Username: <input type="text" name="username"><br><br>
-      Password: <input type="password" name="password"><br><br>
-      Confirm Password: <input type="password" name="confirmpassword"><br><br>
-      Email: <input type="text" name="email"><br><br>
-      Birthdate: <input type="date" name="birthdate"><br><br>
-      <input type="submit" value="Register">
-    <form>
+		<form action="/register" method="POST">
+		  {% csrf_token %}
+		  Username: <input type="text" name="username"><br><br>
+		  Password: <input type="password" name="password"><br><br>
+		  Confirm Password: <input type="password" name="confirmpassword"><br><br>
+		  Email: <input type="text" name="email"><br><br>
+		  Birthdate: <input type="date" name="birthdate"><br><br>
+		  <input type="submit" value="Register">
+		<form>
 	</div>
     <br><br>
         {% if messages %}
