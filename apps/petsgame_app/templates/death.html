@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EpizoPets - You have died</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<br><br><br>
+	<p>
+		Well, well, it happens to everyone. In the end, we all lose, no matter how much we win. What happens next?
+		You don't really know. Perhaps your pets have eaten you and run off into the wild. Perhaps you'll meet them again
+		in the next life, or perhaps they died of sadness with you gone.
+	</p>
+	<br>
+	<p>
+		If you wish to be reborn into the same hellish nightmare world and suffer again because you either enjoy that or enjoyed something about it all,
+	</p>
+	<br><br>
+	<a href="{% url 'death' %}"><h3>Go towards the light.</h3></a>
+</body>
+</html>

@@ -1,78 +1,118 @@
 <!DOCTYPE html>
 <html>
  <head>
-   <title>To Eat or To Love? - Dashboard</title>
+   <title>EpizoPets - Dashboard</title>
    {% load static %}
    <link rel="stylesheet" href="{% static 'style.css' %}" media="screen" title="no title"  charset="utf-8">
  </head>
  <body>
-   <h2>{{request.session.username}}'s Pets</h2>
-
-  <div id="animals">
-    {% for x in myanimals %}
-    <div class="animal">
-		{% if x.type == "babadook" %}
-			<img src="{% static 'images/Babadook.jpg' %}" media="screen">
-		{% elif x.type == "fishy" %}
-			<img src="{% static 'images/Fishy.jpg' %}" media="screen">
-		{% elif x.type == "doggy" %}
-			<img src="{% static 'images/Doggy.jpg' %}" media="screen">
-		{% elif x.type == "kitty" %}
-			<img src="{% static 'images/Kitty.jpg' %}" media="screen">
-		{% elif x.type == "piggy" %}
-			<img src="{% static 'images/Piggy.jpg' %}" media="screen">
-		{% endif %}
-      <br><br>
-      Name: {{x.name}}<br><br>
-      Type: {{x.type}}<br><br>
-	  Birthday: {{x.birthdate}}<br><br>
-      HP: {{x.currenthp}} / {{x.maxhp}}<br><br>
-	  
-      <form class="killbutton" action="/eatconfirm" method="POST">
-	  {% csrf_token %}
-	  <input type="hidden" value={{x.id}} name="id">
-	  <input type="submit" value="Kill and eat this pet">
-	  </form>
-	  <br><br>
-    </div>
-    {% endfor %}
-  </div>
-  <br><br>
-  <div id="basket">
-  <center>
-  <table id="basketcontents">
-  {% for x in myitems %}
-  <tr>
-  <td>{{x.item}}</td>
-  <td>{{x.amount}}</td>
-  <td>{{x.description}}</td>
-  <td><form id="usebutton" action="/useitem" method="POST">
-	{% csrf_token %}
-	<input type="hidden" value={{x.item}} name="item">
-	<input type="submit" value="Use">
-  </form>
-  </td>
-  </tr>
-  {% endfor %}
-  </table>
-  </center>
-  <br><br>
-  </div>
-  
-  <form action="/forage" id="foragebutton">
-	<input type="submit" value="Forage">
-  </form>
-  
-  <a id="addpet" href="{% url "newpet" %}">Add a new pet</a>
-  <br><br>
-    {% if messages %}
-			{% for message in messages %}
-        <span id="messages" {% if message.error %} class="messagerror" {% elif message.success %} class="messagesuccess"{% endif %}>{{ message }}</span><br>
+	<header>
+		<div id="headlinks">			
+		  <a class="headlink" id="logout" href="{% url 'logout' %}">Logout</a><br><br>
+		  <a class="headlink" id="reportbug" href="mailto:vincentsnow@gmx.com">Report a Bug</a><br><br>
+		  <a class="headlink" id="help" href="{% url 'help' %}" target="_blank">Open Help Window</a><br><br>
+		</div>
+		<div id="title">
+			<h2>{{request.session.username}}, welcome back.</h2><br>
+			<span id="userhealth">Your health: {{player.health}} / {{player.maxhealth}}</span>
+		</div>
+		<div id="buttonsdiv">
+			<form action="/forage" class="actionform">
+				<input type="submit" value="Forage" class="actionbutton">
+			</form>
+			<form action="/hunt" class="actionform">
+				<input type="submit" value="Hunt" class="actionbutton">
+			</form>
+			<form action="/newpet" class="actionform">
+				<input type="submit" value="New Pet" class="actionbutton">
+			</form>
+		</div>
+	</header>
+	<main>
+		{% for x in myanimals %}
+			<div class="animal">
+				{% if x.type == "bunny" %}
+					<img class="animalimg" src="{% static 'images/bunny.jpg' %}" media="screen">
+				{% elif x.type == "fishy" %}
+					<img class="animalimg" src="{% static 'images/Fishy.jpg' %}" media="screen">
+				{% elif x.type == "doggy" %}
+					<img class="animalimg" src="{% static 'images/Doggy.jpg' %}" media="screen">
+				{% elif x.type == "kitty" %}
+					<img class="animalimg" src="{% static 'images/Kitty.jpg' %}" media="screen">
+				{% elif x.type == "piggy" %}
+					<img class="animalimg" src="{% static 'images/Piggy.jpg' %}" media="screen">
+				{% elif x.type == "froggy" %}
+					<img class="animalimg" src="{% static 'images/froggy.jpg' %}" media="screen">
+				{% elif x.type == "birdy" %}
+					<img class="animalimg" src="{% static 'images/birdy.jpg' %}" media="screen">
+				{% elif x.type == "peggy" %}
+					<img class="animalimg" src="{% static 'images/peggy.jpg' %}" media="screen">
+				{% elif x.type == "draggy" %}
+					<img class="animalimg" src="{% static 'images/draggy.jpg' %}" media="screen">
+				{% endif %}
+			  <br><br>
+			  Name: {{x.name}}<br>
+			  Type: {{x.type}}<br>
+			  Birthday: {{x.birthdate}}<br>
+			  HP: {{x.currenthp}} / {{x.maxhp}}<br>
+			  
+			  <form class="killbutton" action="/eatconfirm" method="POST">
+			  {% csrf_token %}
+			  <input type="hidden" value={{x.id}} name="id">
+			  <input type="submit" value="Kill and eat this pet">
+			  </form><br>
+			  
+			</div>
+		{% endfor %}
+	</main>
+	<div id="panel">
+		<div id="basket">
+			<table id="basketcontents">
+			{% for x in myitems %}
+			  <tr>
+				<td>
+					{% if x.item == "apple" %}
+						<img class="itemimg" src={% static 'images/apple.jpg' %}>
+					{% elif x.item == "water" %}
+						<img class="itemimg" src={% static 'images/water.jpg' %}>
+					{% elif x.item == "acorn" %}
+						<img class="itemimg" src={% static 'images/acorn.jpg' %}>
+					{% elif x.item == "flower" %}
+						<img class="itemimg" src={% static 'images/flower.jpg' %}>
+					{% elif x.item == "stick" %}
+						<img class="itemimg" src={% static 'images/stick.jpg' %}>
+					{% elif x.item == "bug" %}
+						<img class="itemimg" src={% static 'images/bug.jpg' %}>
+					{% elif x.item == "honey" %}
+						<img class="itemimg" src={% static 'images/honey.jpg' %}>
+					{% elif x.item == "mushroom" %}
+						<img class="itemimg" src={% static 'images/mushroom.jpg' %}>
+					{% elif x.item == "berry" %}
+						<img class="itemimg" src={% static 'images/berry.jpg' %}>
+					{% endif %}
+				</td>
+				<td>{{x.item}} &nbsp; &nbsp;</td>
+				<td>{{x.amount}} &nbsp; &nbsp;</td>
+				<td>{{x.description}} &nbsp; &nbsp;</td>
+				<td><form id="usebutton" action="/useitem" method="POST">
+					{% csrf_token %}
+				<input type="hidden" value={{x.item}} name="item">
+				<input type="submit" value="Use">
+				</form>
+				</td>
+			  </tr>
 			{% endfor %}
-    {% endif %}
-
-  <a id="logout" href="{% url 'logout' %}">Logout</a>
-
-
+			</table>
+		</div>
+		<div id="messagecenter">
+			<ul>
+			{% if messages %}
+					{% for message in messages %}
+				<li class="messages">{{ message }}</li>
+					{% endfor %}
+			{% endif %}
+			</ul>
+		</div>
+	</div>
  </body>
 </html>

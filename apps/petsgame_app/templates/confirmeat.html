@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
  <head>
-   <title>To Eat or To Love? - Eat your pet?</title>
+   <title>EpizoPets - Eat your pet?</title>
    {% load static %}
    <link rel="stylesheet" href="{% static 'style.css' %}" media="screen" title="no title"  charset="utf-8">
  </head>
@@ -9,16 +9,26 @@
 
    <h2>Are you sure you want to eat your pet?</h2>
    <center>
-   {% if thispet.type == "babadook" %}
-   <img src="{% static 'images/babadooksad.jpg' %}">
+   {% if thispet.type == "bunny" %}
+   <img class="secretimg" src="{% static 'images/bunnysad.jpg' %}">
    {% elif thispet.type == "doggy" %}
-   <img src="{% static 'images/doggysad.jpg' %}">
+   <img class="secretimg" src="{% static 'images/doggysad.jpg' %}">
    {% elif thispet.type == "piggy" %}
-   <img src="{% static 'images/kittysad.jpg' %}">
+   <img class="secretimg" src="{% static 'images/kittysad.jpg' %}">
    {% elif thispet.type == "fishy" %}
-   <img src="{% static 'images/fishysad.jpg' %}">
+   <img class="secretimg" src="{% static 'images/fishysad.jpg' %}">
    {% elif thispet.type == "kitty" %}
-   <img src="{% static 'images/kittysad.jpg' %}">
+   <img class="secretimg" src="{% static 'images/kittymad.jpg' %}">
+   {% elif thispet.type == "kitty" %}
+   <img class="secretimg" src="{% static 'images/kittysad.jpg' %}">
+   {% elif thispet.type == "froggy" %}
+   <img class="secretimg" src="{% static 'images/froggysad.jpg' %}">
+   {% elif thispet.type == "birdy" %}
+   <img class="secretimg" src="{% static 'images/birdysad.jpg' %}">
+   {% elif thispet.type == "peggy" %}
+   <img class="secretimg" src="{% static 'images/peggysad.jpg' %}">
+   {% elif thispet.type == "draggy" %}
+   <img class="secretimg" src="{% static 'images/draggymad.jpg' %}">
    <br><br>
    {% endif %}
    <br><br>

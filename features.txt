@@ -1,0 +1,11 @@
+Features to add:
+
+Hunting feature - You can hunt for pets to eat. A random pet that is not yours will be chosen.
+	If you kill it, you can eat it. But you can lose the fight! 
+	You may also encounter a feral pet (a pet with no owner, happens when a user dies.) which you can keep.
+
+ScoreBoard - The highest maxhp reached by a player or a specific type of pet will be shown here. Gotta have something to win
+	in this meaningless existence, right?
+
+
+New Secret Pets - let's add two more awesome secret pets!

@@ -1,13 +1,13 @@
  <!DOCTYPE html>
  <html>
   <head>
-    <title>To Eat or To Love?</title>
+    <title>EpizoPets</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" media="screen" title="no title"  charset="utf-8">
   </head>
   <body>
-    <h1>To Eat or To Love?</h1>
-    <p>Collect and care for adorable critters. When you get bored with them, you can just kill them and eat them to make room for another!</p>
+    <h1>Welcome to EpizoPets!</h1>
+    <p>You and your beloved animal friends must survive in the woods. What will you eat? How long will you last?</p>
     <br><br>
 	<div class="formdiv">
 		<form action="/login" method="POST">
@@ -30,6 +30,8 @@
 		<form>
 	</div>
     <br><br>
+	<span id="trouble">Trouble logging in? Forgot your password? <a href="mailto:vincentsnow@gmx.com">Click here</a> to email us from the email associated with your account or tell us about a bug.</span>
+	<br><br>
         {% if messages %}
 			{% for message in messages %}
         <span {% if message.error %} class="messagerror" {% elif message.success %} class="messagesuccess"{% endif %}>{{ message }}</span><br>

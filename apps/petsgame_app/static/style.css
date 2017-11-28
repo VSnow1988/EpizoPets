@@ -1,11 +1,29 @@
-h1 {
-	font-size: 30px;
-	text-align: center;
+* {
+	margin: 0px;
+	padding: 0px;
 }
 
-h2 {
-	font-size: 26px;
-	text-align: center;
+body {
+   font-family: Tahoma, Arial, sans-serif;
+   color: #000;
+   background-color: #fff;
+   text-align: center;
+ }
+ 
+h1 {
+	font-size: 3rem;
+	text-align: center;	
+}
+
+.formdiv {
+   border: 5px solid green;
+   border-radius: 10px;
+	width: 80%;
+	margin: 0px auto;
+}
+
+#trouble{
+	font-size: 0.5rem;
 }
 
 .messageerror{
@@ -16,86 +34,159 @@ h2 {
    color: green;
  }
 
-body {
-   font-family: Tahoma, Arial, sans-serif;
-   color: #000;
-   background-color: #fff;
-   text-align: center;
- }
+/*Dashboard page*/
 
-.formdiv {
-   border: 5px solid green;
- }
+header {
+	height: 10%;
+	width: 100%;
+	display: flex;
+}
 
-#logout {
-   position: absolute;
-   bottom: 10px;
-   left: 10px;
-   font-size: 20px;
-   font-weight: bold;
- }
+#headlinks{
+	width: 20%;
+	text-align: center;
+	height: 100%;
+}
 
-#addpet {
-   margin: 0px auto;
- }
+.headlink{
+	font-size: 0.8rem;
+}
+
+#title{
+	width: 50%;
+	text-align: center;
+	height: 100%;
+}
+
+h2 {
+	font-size: 2rem;
+	text-align: center;
+	margin-left: 20%;
+}
+
+#buttonsdiv{
+	width: 30%;
+	height: 100%;
+}
+
+.actionform{
+	display: inline;
+	margin-right: 5%;
+	margin-top: 5%;
+}
+
+.actionbutton {
+	border: 1px dotted green;
+	margin-right: 1%;
+	margin-top: 10%;
+}
+ 
+ /* The main game board */
+ 
+main {
+	width: 100%;
+	height: 80%;
+}
 
 .animal {
 	border: 5px solid green;
-	width: 200px;
+	border-radius: 10px;
 	text-align: center;
-	padding: 10px;
-	display: inline;
-	margin: 10px;
- }
- 
-#animals {
-	 display: flex;
-	 margin-left: 20%;
- }
- 
-.button {
-	border: none;
-	margin: 0px auto;
-	margin-bottom: 50px;
- }
+	height: 98%;
+	width: 17%;
+	margin: 1% 1%;
+	display: inline-block;
+}
+
+.animalimg{
+	width: 100%;
+}
 
 .killbutton {
 	 border: none;
- }
+}
  
 .usebutton {
 	border: none;
 	display: inline;
 }
 
+/* The Message and basket section */
+
+#panel{
+	height: 10%;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+}
+
 #basket {
-	border: 2px solid black;
-	width: 600px;
-	height: 200px;
-	position: absolute;
-	bottom: 50px;
-	right: 20px;
-	text-align: center;
-	overflow: scroll;
+	max-height: inherit;
+	width: 50%;
+	background-color: brown;
+	overflow: auto;
 }
 
 #basketcontents {
 	border: none;
+	width: 100%;
 }
 
 td {
-	margin: 10px;
-	padding: 10px;
+	border-top: 1px solid #000;
 }
 
-#foragebutton {
-	border: 5px dotted green;
-	position: absolute;
-	left: 20px;
-	bottom: 100px;
-	padding: 5px;
+.itemimg{
+	height: 100%;
+	border-radius: 10px;
 }
 
-#messages {
-	margin-right: 50px;
+#messagecenter{
+	max-height: 100%;
+	width: 50%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.messages {
+	margin-left: 5px;
+}
+
+
+/* OTHER PAGES */
+
+.secretimg {
+	height: 20%;
+	width: 50%;
+	margin: 0px auto;
+}
+
+/* HUNT PAGE */
+
+#battlefield {
+	height: 80%;
+	width: 100%;
+}
+
+.battleanimal {
+	border: 5px solid green;
+	border-radius: 10px;
+	text-align: center;
+	height: 98%;
+	width: 20%;
+	margin: 1% 1%;
+	display: inline;
+}
+
+#battlebuttons{
+	text-align: center;
+	height: 98%;
+	width: 20%;
+	margin: 1% 1%;
+	display: inline;
+}
+
+#battlelog{
+	width: 100%;
+	height: 20%;
 }

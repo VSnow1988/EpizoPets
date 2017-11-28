@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EpizoPets - Hunting</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+
+	<h1>The hunt feature is not avilable yet.</h1>
+<!--
+	<div id="battlefield">
+		<h3>You found a {{opponent.type}}!</h3><br><br>
+		
+		<div class="battleanimal">
+			{% if attacker.type == "bunny" %}
+				<img class="animalimg" src="{% static 'images/bunny.jpg' %}" media="screen">
+			{% elif attacker.type == "fishy" %}
+				<img class="animalimg" src="{% static 'images/Fishy.jpg' %}" media="screen">
+			{% elif attacker.type == "doggy" %}
+				<img class="animalimg" src="{% static 'images/Doggy.jpg' %}" media="screen">
+			{% elif attacker.type == "kitty" %}
+				<img class="animalimg" src="{% static 'images/Kitty.jpg' %}" media="screen">
+			{% elif attacker.type == "piggy" %}
+				<img class="animalimg" src="{% static 'images/Piggy.jpg' %}" media="screen">
+			{% elif attacker.type == "froggy" %}
+				<img class="animalimg" src="{% static 'images/froggy.jpg' %}" media="screen">
+			{% elif attacker.type == "birdy" %}
+				<img class="animalimg" src="{% static 'images/birdy.jpg' %}" media="screen">
+			{% elif attacker.type == "peggy" %}
+				<img class="animalimg" src="{% static 'images/peggy.jpg' %}" media="screen">
+			{% elif attacker.type == "draggy" %}
+				<img class="animalimg" src="{% static 'images/draggy.jpg' %}" media="screen">
+			{% endif %}
+			<br>
+			{{attacker.name}}<br>
+			{{attacker.type}}<br>
+			{{attacker.currenthp}} / {{attacker.maxhp}}<br>		
+		</div>
+		
+		<div class="battlebuttons">
+			<form id="attack" method="post" action="/attack">
+				{% csrf_token %}
+				<input type="hidden" value={{attacker.id}} name="attacker">
+				<input type="hidden" value={{opponent.id}} name="opponent">
+				<input type="submit" value="Attack!">
+			</form>
+			{% if opponent.owner == None %}
+			<form id="huntkeep" method="post" action="/huntkeep">
+				{% csrf_token %}
+				<input type="hidden" value={{opponent.id}} name="opponent">
+				<input type="submit" value="Keep it!">
+			</form>
+			{% endif %}
+		</div>
+		
+		<div class="battleanimal">
+			{% if opponent.type == "bunny" %}
+				<img class="animalimg" src="{% static 'images/bunny.jpg' %}" media="screen">
+			{% elif opponent.type == "fishy" %}
+				<img class="animalimg" src="{% static 'images/Fishy.jpg' %}" media="screen">
+			{% elif opponent.type == "doggy" %}
+				<img class="animalimg" src="{% static 'images/Doggy.jpg' %}" media="screen">
+			{% elif opponent.type == "kitty" %}
+				<img class="animalimg" src="{% static 'images/Kitty.jpg' %}" media="screen">
+			{% elif opponent.type == "piggy" %}
+				<img class="animalimg" src="{% static 'images/Piggy.jpg' %}" media="screen">
+			{% elif opponent.type == "froggy" %}
+				<img class="animalimg" src="{% static 'images/froggy.jpg' %}" media="screen">
+			{% elif opponent.type == "birdy" %}
+				<img class="animalimg" src="{% static 'images/birdy.jpg' %}" media="screen">
+			{% elif opponent.type == "peggy" %}
+				<img class="animalimg" src="{% static 'images/peggy.jpg' %}" media="screen">
+			{% elif opponent.type == "draggy" %}
+				<img class="animalimg" src="{% static 'images/draggy.jpg' %}" media="screen">
+			{% endif %}
+			<br>
+			{{opponent.name}}<br>
+			{{opponent.type}}<br>
+			{{opponent.currenthp}} / {{opponent.maxhp}}<br>	
+		</div>
+	</div>
+	
+	<div id="battlelog">
+		<ul>
+			{% if messages %}
+					{% for message in messages %}
+				<li class="messages">{{ message }}</li>
+					{% endfor %}
+			{% endif %}
+			</ul>	
+	</div>
+	-->
+</body>
+</html>
